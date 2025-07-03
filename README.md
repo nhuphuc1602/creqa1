@@ -1,1 +1,2 @@
-# Creqa Assessment : Chess Rating Exporter & AimTrainer Bot
+# Creqa Assessment
+Chess Rating Exporter & AimTrainer Bot
