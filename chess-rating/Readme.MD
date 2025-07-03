@@ -36,8 +36,8 @@ mvn -v
 ### 2. Clone Repository
 
 ```bash
-git clone https://github.com/<your-username>/chess-rating-exporter.git
-cd chess-rating-exporter
+git clone https://github.com/nhuphuc1602/creqa1.git
+cd creqa1/chess-rating
 ```
 
 ### 3. Google API Setup
