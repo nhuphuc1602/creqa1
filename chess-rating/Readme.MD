@@ -48,6 +48,7 @@ I have already created credential file in codebase, but Google will dectect cred
 4. Create Service Account:
     - Navigate to IAM & Admin > Service Accounts
     - Create new Service Account
+    - Manage keys -> Add key -> Create new key
     - Download JSON key file
     - Place JSON file in `src/main/resources/service-account.json`
 5. Share target Google Drive folder with Service Account email
