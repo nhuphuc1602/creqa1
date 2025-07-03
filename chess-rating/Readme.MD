@@ -41,7 +41,7 @@ cd creqa1/chess-rating
 ```
 
 ### 3. Google API Setup
-I have already created credential file in codebase, you can run without recreating Google Api credential, but if you want to create your own file, you can follow the following way:
+I have already created credential file in codebase, but Google will dectect credential and restricted it when I upload to Github, so you need to create your own file, you can follow the following way:
 1. Go to [Google Cloud Console](https://console.cloud.google.com/)
 2. Create/select a project
 3. Enable Google Sheets API and Drive API
