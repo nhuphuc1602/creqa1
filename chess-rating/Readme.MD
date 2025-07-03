@@ -50,7 +50,7 @@ I have already created credential file in codebase, but Google will dectect cred
     - Create new Service Account
     - Manage keys -> Add key -> Create new key
     - Download JSON key file
-    - Place JSON file in `src/main/resources/service-account.json`
+    - Rename to service-account.json and replace JSON file in `src/main/resources/service-account.json`
 5. Share target Google Drive folder with Service Account email
 
 ### 4. Build and Run
