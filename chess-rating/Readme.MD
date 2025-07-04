@@ -41,7 +41,7 @@ cd creqa1/chess-rating
 ```
 
 ### 3. Google API Setup
-I have already created credential file in codebase, but Google will dectect credential and restricted it when I upload to Github, so you need to create your own file, you can follow the following way:
+I have already created credential file in codebase, but Google will dectect credential and restricted it when I upload to Github, so you need to create your own file, you can follow the following way. (I will also leave a link to download this file below if you don't want to configure complicated Google API service.):
 1. Go to [Google Cloud Console](https://console.cloud.google.com/)
 2. Create/select a project
 3. Enable Google Sheets API and Drive API
@@ -52,6 +52,8 @@ I have already created credential file in codebase, but Google will dectect cred
     - Download JSON key file
     - Rename to service-account.json and replace JSON file in `src/main/resources/service-account.json`
 5. Share target Google Drive folder with Service Account email
+
+[Link Download](https://drive.google.com/file/d/10Sx3-j9EwCViNmhNNaeK_CFbQbVxeEfd/view?usp=drive_link)
 
 ### 4. Build and Run
 
