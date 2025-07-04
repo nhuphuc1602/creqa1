@@ -7,7 +7,7 @@ import org.openqa.selenium.interactions.Actions;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +24,6 @@ public class Main {
 
         Thread.sleep(1000);
 
-        // Click nút PLAY ban đầu
         boolean clickedPlay = false;
         for (WebElement btn : driver.findElements(By.tagName("button"))) {
             String text = btn.getText();
@@ -42,7 +41,7 @@ public class Main {
             return;
         }
 
-        Thread.sleep(500);
+        Thread.sleep(1000);
 
         Actions actions = new Actions(driver);
 
@@ -53,7 +52,7 @@ public class Main {
         int missedCount = 0;
         final int maxMissed = 5;
 
-        for (int round = 0; round < 50; round++) {
+        for (int round = 0; round < 100; round++) {
 
             boolean playAgainFound = false;
             for (WebElement btn : driver.findElements(By.tagName("button"))) {
@@ -66,8 +65,14 @@ public class Main {
             }
             if (playAgainFound) break;
 
-            File screenshot = canvas.getScreenshotAs(OutputType.FILE);
-            BufferedImage img = ImageIO.read(screenshot);
+//            File screenshot = canvas.getScreenshotAs(OutputType.FILE);
+//            BufferedImage img = ImageIO.read(screenshot);
+            BufferedImage img = ImageIO.read(
+                    new ByteArrayInputStream(
+                            canvas.getScreenshotAs(OutputType.BYTES)
+                    )
+            );
+
 
             List<MyPoint> redPoints = findRedPoints(img);
 
@@ -78,13 +83,13 @@ public class Main {
                     System.out.println("Try max times, stop.");
                     break;
                 }
-                Thread.sleep(1500);
+                Thread.sleep(1000);
                 continue;
             }
 
             missedCount = 0;
 
-            List<MyPoint> clusters = clusterPoints(redPoints, 60);
+            List<MyPoint> clusters = clusterPoints(redPoints, 25);
 
             System.out.println("Round " + round + ": Found " + redPoints.size() + " red circle, combine " + clusters.size() + " cluster.");
 
@@ -92,15 +97,12 @@ public class Main {
                 int clickX = canvasLocation.getX() + p.x;
                 int clickY = canvasLocation.getY() + p.y;
 
-                System.out.printf("Click (%d, %d)%n", clickX, clickY);
-
-                actions.moveByOffset(clickX, clickY).click().perform();
-                actions.moveByOffset(-clickX, -clickY).perform();
-
-                Thread.sleep(1);
+                actions.moveByOffset(clickX, clickY).click().moveByOffset(-clickX, -clickY);
             }
 
-            Thread.sleep(5);
+            actions.perform();
+
+//            Thread.sleep(1);
         }
 
         driver.quit();
@@ -118,7 +120,7 @@ public class Main {
                 int g = (rgb >> 8) & 0xFF;
                 int b = rgb & 0xFF;
 
-                if (r > 200 && g > 100 && g < 180 && b < 80) {
+                if (r >= 150 && g >= 60 && g <= 180 && b <= 120) {
                     points.add(new MyPoint(x, y));
                 }
             }
